@@ -1,0 +1,153 @@
+$width_content_site: (
+	1920px
+);
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;700;800&family=Open+Sans:wght@600;700;800&family=Roboto&display=swap');
+
+$container-max-widths: (
+	sm: 540px,
+	md: 720px,
+	lg: 960px,
+	xl: 1140px,
+	xxl: 1320px
+);
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,800,600,500,400,700");
+
+a:link,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+	cursor: pointer;
+	color: inherit;
+	text-decoration: none;
+	bottom: 20;
+	right: 10;
+}
+
+
+:root {
+	--h-1-font-family: "Montserrat-ExtraBold", Helvetica;
+	--h-1-font-weight: 800;
+	--h-1-font-size: 64px;
+	--h-1-letter-spacing: 6.4px;
+	--h-1-line-height: 86px;
+	--h-1-font-style: normal;
+	--text-font-family: "Montserrat-Regular", Helvetica;
+	--text-font-weight: 400;
+	--text-font-size: 18px;
+	--text-letter-spacing: 0px;
+	--text-line-height: normal;
+	--text-font-style: normal;
+	--h-3-font-family: "Montserrat-Bold", Helvetica;
+	--h-3-font-weight: 700;
+	--h-3-font-size: 32px;
+	--h-3-letter-spacing: 0px;
+	--h-3-line-height: normal;
+	--h-3-font-style: normal;
+	--small-txt-font-family: "Montserrat-Medium", Helvetica;
+	--small-txt-font-weight: 500;
+	--small-txt-font-size: 12px;
+	--small-txt-letter-spacing: 0.24px;
+	--small-txt-line-height: normal;
+	--small-txt-font-style: normal;
+	--title-font-family: "Montserrat-Bold", Helvetica;
+	--title-font-weight: 700;
+	--title-font-size: 20px;
+	--title-letter-spacing: 0px;
+	--title-line-height: normal;
+	--title-font-style: normal;
+	--btn-small-font-family: "Montserrat-SemiBold", Helvetica;
+	--btn-small-font-weight: 600;
+	--btn-small-font-size: 14px;
+	--btn-small-letter-spacing: 2.1px;
+	--btn-small-line-height: normal;
+	--btn-small-font-style: normal;
+	--variable-collection-1: rgba(254, 235, 0, 1);
+	--variable-collection-white: rgba(255, 255, 255, 1);
+	--variable-collection-black: rgba(7, 7, 7, 1);
+	--variable-collection-main: rgba(254, 235, 0, 1);
+}
+
+.custom-checkbox {
+	/* Контейнер должен быть релятивным, так как внутри него мы разместим два абсолютно спозиционированных элемента */
+	position: relative;
+	/* скрываем элементы, попадающие за границы label */
+	overflow: hidden;
+	/* По умолчанию, label - это строчный элемент. С высокой вероятностью, нам нужно будет добавлять вертикальный margin, поэтому сразу сделаем его строчно-блочным*/
+	display: inline-block;
+	/* Делаем так, чтобы чекбокс нельзя было выделить курсором, а только нажать */
+	user-select: none;
+	/* Я приверженец того, что все интерактивные элементы должны иметь cursor: pointer, поэтому задаём и его */
+	cursor: pointer;
+	/* Отодвигаем левую часть так, чтобы влез кастомный чекбокс*/
+	padding: 0 30px 0 30px;
+	/* Задаём минимальную высоту */
+	min-height: 1em;
+}
+
+/* Задаем кастомную галочку для чекбокса и скрываем её по умолчанию */
+.custom-checkbox .checker {
+	position: absolute;
+	margin-top: 0;
+	/* Выдвигаем чекбокс левее так, чтобы он не наезжал на текст */
+	margin-left: -1.2em;
+	width: 1em;
+	height: 1em;
+	overflow: hidden;
+	text-align: center;
+	font-size: 2em;
+	line-height: 1;
+	border: 1px dashed white;
+	border-radius: 3px;
+	background-color: transparent;
+	/* Делаем галочку прозрачной */
+	color: transparent;
+}
+
+/* В псевдо-элементе допишем саму галочку */
+.custom-checkbox .checker:after {
+	content: '✓';
+	padding-right: 10px;
+}
+
+/* указываем селектор на наш конкретный инпут с типом чекбокс */
+.custom-checkbox input[type='checkbox'] {
+	/* Выводим стандартный чекбокс за границы label */
+	position: absolute;
+	right: 100%;
+	top: 0;
+}
+
+/* Несколько сложноее CSS правило: когда чекбокс будет иметь атрибут checked, его сосед снизу (селектор +) с классом .checker, примет эти стили */
+.custom-checkbox input[type='checkbox']:checked+.checker {
+	/* Перекрашиваем фон чекбокса и галочку */
+	background-color: transparent;
+	color: gold;
+}
+
+/* Не все люди используют для просмотра веб-страниц мышь, а некоторые из них используют вообще только клавиатуру. Так вот, чтобы интерактивные элементы подсвечивались, когда фокус клавиатуры попадал на них, им нужно задать отдельные стили. */
+/* Когда скрытый инпут окажется в фокусе, его сосед с классом .checker примет стили */
+.custom-checkbox input[type='checkbox']:focus+.checker {
+	box-shadow: 0 0 1px 0 rgb(255, 255, 255);
+}
+
+/* Когда скрытый интуп нельзя изменить, его сосед с классом .checker примет стили */
+.custom-checkbox input[type='checkbox']:disabled+.checker {
+	background-color: #999;
+	border-color: #999;
+}
+
+/* Этот класс позволяет правильно скрыть элемент с экрана так, чтобы он был доступен для скринридеров */
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+	clip: rect(0 0 0 0);
+	overflow: hidden;
+}
